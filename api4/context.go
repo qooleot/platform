@@ -366,7 +366,7 @@ func (c *Context) RequireUsername() *Context {
 
 	if len(c.Params.Username) < 3 {
 		c.SetInvalidUrlParam("username")
-	} 
+	}
 
 	if len(c.Params.Username) > 22 {
 		c.SetInvalidUrlParam("username")
@@ -386,6 +386,17 @@ func (c *Context) RequirePostId() *Context {
 	return c
 }
 
+func (c *Context) RequireFileId() *Context {
+	if c.Err != nil {
+		return c
+	}
+
+	if len(c.Params.FileId) != 26 {
+		c.SetInvalidUrlParam("file_id")
+	}
+	return c
+}
+
 func (c *Context) RequireEmail() *Context {
 	if c.Err != nil {
 		return c
@@ -398,4 +409,3 @@ func (c *Context) RequireEmail() *Context {
 
 	return c
 }
-
